@@ -1,0 +1,18 @@
+{
+  "name": "creepersplit",
+  "version": "1.0.0",
+  "description": "A bot for fun and moderation :)",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "Wayvshock",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}

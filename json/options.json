@@ -1,0 +1,15 @@
+{
+    "ClientOptions": {
+        "fetchAllMembers"      : false,
+        "disableMentions"      : "everyone",
+        "messageCacheMaxSize"  : 15,
+        "shards"               : "auto",
+        "partials": [
+            "REACTION", "MESSAGE", 
+            "CHANNEL", "USER"
+        ],
+        "ws": {
+            "compress": true
+        }
+    }
+}
