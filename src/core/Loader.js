@@ -10,7 +10,9 @@ module.exports = (client) => {
                                 .filter(file => file.endsWith('.js'));
         for (const file of getFolder) {
             const command = require(`../../commands/${category}/${file}`);
-            client.commands.set(command.name, command)
+            const commandClass = new command()
+            client.commands.set(commandClass.name, commandClass)
+            
         }
     }
 }
