@@ -1,4 +1,3 @@
-const Embedder = require("../../src/utility/Embedder");
 const CommandStructure = require("../../structures/CommandStructure");
 
 class Ping extends CommandStructure {
@@ -7,7 +6,7 @@ class Ping extends CommandStructure {
 
         this.name = 'ping';
         this.aliases = [ 'pong' ];
-        this.category = 'Core';
+        //this.category = 'Core';
     }
 
     async execute({ message, client }) {
@@ -15,9 +14,9 @@ class Ping extends CommandStructure {
         let messageNow = message.createdTimestamp;
         
         await message.channel.send('```results:```')
-        let m = await message.channel.send('Pinging...');
-
-        await m.edit(`latency:  ${now - messageNow}ms` + '\napi: ' + Math.round(client.ws.ping) + 'ms')
+        await message.channel.send('Pinging...').then(msg => {
+             msg.edit(`**Pong!** [Latency:  ${now - messageNow}ms` + '] [Api: ' + Math.round(client.ws.ping) + 'ms]')
+        })
     }
 }
 

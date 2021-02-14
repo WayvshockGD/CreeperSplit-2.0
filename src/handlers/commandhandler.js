@@ -11,6 +11,7 @@ module.exports = (message, client) => {
         
         if (!command) return false;
 
+
         try {
             command.execute({message, args, client})
         } catch (error) {

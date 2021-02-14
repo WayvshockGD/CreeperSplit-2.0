@@ -4,7 +4,7 @@
   "description": "A bot for fun and moderation :)",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/index.js"
   },
   "keywords": [
     "bot",
@@ -14,6 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "imagescript": "^1.1.16"
+    "imagescript": "^1.1.16",
+    "mongoose": "^5.11.16"
   }
 }
