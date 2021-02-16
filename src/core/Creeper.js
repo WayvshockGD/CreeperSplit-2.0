@@ -1,8 +1,7 @@
 const { Client } = require("discord.js");
 const { ClientOptions } = require('../../json/options.json');
-const { token } = require('../../json/config.json');
+const { token, prefix } = require('../../json/config.json');
 const CommandHandler = require('../handlers/commandhandler');
-const Database = require('../DatabaseManager');
 const Loader = require('./Loader');
 
 class Creeper extends Client {
@@ -20,7 +19,7 @@ class Creeper extends Client {
     intStatus() {
         this.user.setPresence({
             activity: {
-                name: 'with TNT',
+                name: `with TNT | ${this.guilds.cache.size} Guilds | ${prefix}help`,
                 type: 'PLAYING'
             },
             status: 'idle'
@@ -29,8 +28,8 @@ class Creeper extends Client {
 
     onStartup() {
         console.log(`Ready at ${this.user.username}\n${this.guilds.cache.size} Guild(s)\n${this.users.cache.size} User(s)`)
-        Database(this);
         this.intStatus();
+        require('../DatabaseManager');
     }
 
     onMessage() {

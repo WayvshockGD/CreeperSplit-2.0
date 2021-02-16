@@ -1,8 +1,13 @@
 {
-    "ClientOptions": {
-        "fetchAllMembers": false,
-        "disableMentions": "everyone",
-        "messageCacheMaxSize": 30,
-        "shards": "auto"
-    }
+  "ClientOptions": {
+    "fetchAllMembers": false,
+    "disableMentions": "everyone",
+    "messageCacheMaxSize": 30,
+    "shards": "auto"
+  },
+  "mongooseOptions": {
+    "autoIndex": true,
+    "useNewUrlParser": true,
+    "useUnifiedTopology": true
+  }
 }

@@ -16,7 +16,9 @@ class Help extends CommandStructure {
             embed: {
                 title: 'Command Menu',
                 fields: [
-                    { name: 'Core', value: `\`\`\`${prefix}${Commands.main.Core.join(`, ${prefix}`)}\`\`\``, inline: false }
+                    { name: 'Core', value: `\`\`\`${prefix}${Commands.main.Core.join(`, ${prefix}`)}\`\`\``, inline: false },
+                    { name: 'Economy', value: `\`\`\`${prefix}${Commands.main.economy.join(`, ${prefix}`)}\`\`\``, inline: false},
+                    { name: 'Games', value: `\`\`\`${prefix}${Commands.main.games.join(`, ${prefix}`)}\`\`\``, inline: false}
                 ],
                 color: "GREEN"
             }

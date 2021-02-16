@@ -8,7 +8,7 @@ const { MessageEmbed } = require("discord.js")
  * @returns {module:"discord.js".MessageEmbed}
  * @constructor
  */
-   function NormalEmbed(title, description, color, message) {
+   async function NormalEmbed(title, description, color, message) {
     return new MessageEmbed()
         .setAuthor(title, message.author.avatarURL())
         .setDescription(description)
@@ -22,7 +22,7 @@ const { MessageEmbed } = require("discord.js")
  * @returns {module:"discord.js".MessageEmbed}
  * @constructor
  */
-   function ErrorEmbed(description, message) {
+   async function ErrorEmbed(description, message) {
     return new MessageEmbed()
         .setAuthor('Error', message.author.avatarURL())
         .setDescription(description)
