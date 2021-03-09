@@ -8,21 +8,26 @@ class Help extends CommandStructure {
 
         this.name     = 'help';
         this.aliases  = [ 'commands' ];
+        this.cooldown = 10;
         //this.category = 'Core';
     }
 
-    async execute({ message }) {
-        return await message.channel.send({
-            embed: {
-                title: 'Command Menu',
-                fields: [
-                    { name: 'Core', value: `\`\`\`${prefix}${Commands.main.Core.join(`, ${prefix}`)}\`\`\``, inline: false },
-                    { name: 'Economy', value: `\`\`\`${prefix}${Commands.main.economy.join(`, ${prefix}`)}\`\`\``, inline: false},
-                    { name: 'Games', value: `\`\`\`${prefix}${Commands.main.games.join(`, ${prefix}`)}\`\`\``, inline: false}
-                ],
-                color: "GREEN"
-            }
-        })
+    async execute({ message, args }) {
+        if(!args.length) {
+            return await message.channel.send({
+                embed: {
+                    author: {
+                        name: "Help",
+                        iconURL: message.guild.iconURL()
+                    },
+                    fields: [
+                        { name: 'Help', value: 'Here is a link to my dashboard.\n[click]', inline: true },
+                        { name: 'Server', value: message.guild.name, inline: true },
+                    ],
+                    color: "GREEN"
+                }
+            })
+        }
     }
 }
 

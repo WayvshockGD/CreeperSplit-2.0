@@ -7,53 +7,57 @@ class Balance extends CommandStructure {
     constructor(...args) {
         super(...args);
 
-        this.name    = 'balance';
-        this.aliases = [ 'bal' ];
+        this.name     = 'balance';
+        this.aliases  = [ 'bal' ];
+        this.cooldown = 15;
     }
 
     async execute({ message }) {
         let member = message.author;
 
-        let canvas = Canvas.createCanvas(400, 200);
+        let [coin, money] = await Promise.all([
+            await Canvas.loadImage('src/images/icons/coin.png'),
+            await Canvas.loadImage('src/images/icons/money.png')
+        ]);
+
+        let canvas = Canvas.createCanvas(400, 100);
         let ctx = canvas.getContext('2d');
 
-        let background = await Canvas.loadImage('./src/images/background2.png');
-        let transparent = await Canvas.loadImage('./src/images/transparent.png');
-        let white = await Canvas.loadImage('./src/images/white.png');
-        let circle = await Canvas.loadImage('./src/images/black_circle.png');
-        //let dollar = await Canvas.loadImage('./src/images/slots/0.png');
-        ctx.drawImage(background, 0, 0, canvas.width + 50, canvas.height + 50);
+        let getWhiteImage = await Canvas.loadImage('./src/images/white.png');
+        let getAvatar = await Canvas.loadImage(member.avatarURL({ format: "png" }));
+        //let getGuildLogo = await Canvas.loadImage(message.guild.iconURL({ format: "png" }));
+        //let getGrey = await Canvas.loadImage('./src/images/grey.png');
+        let getTransparent = await Canvas.loadImage('./src/images/transparent.png');
+        let getBackground = await Canvas.loadImage('./src/images/blue.jpg');
 
-        ctx.font = '30px sans-serif';
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        ctx.shadowColor = '#241f1f';
+        ctx.shadowBlur = 10;
+
+        ctx.drawImage(getBackground, 0, 0, canvas.width, canvas.height);
+        //ctx.drawImage(getGrey, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(getWhiteImage, 0, 0, canvas.width - 310, canvas.height);
+        ctx.drawImage(coin, 190, 40, 30, 30);
+        ctx.drawImage(money, 260, 40, 30, 30);
+
+        ctx.drawImage(getAvatar, 12, 20, 60, 60);
+
+        ctx.font = '20px sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(member.username, 130, 70);
+        ctx.fillText(`${message.author.username}`, 100, 30);
 
-        ctx.drawImage(transparent, 130, 70 + 30, 190 + 10, 70 + 15);
-
-        ctx.font = "18px sans-serif";
+        ctx.font = '20px sans-serif';
         ctx.fillStyle = '#ffffff';
-        ctx.fillText(await economyCount(member), 250 - 20, 135);
+        ctx.fillText(`${await economyCount(member)}`, 140, 64);
 
-        ctx.font = "18px sans-serif";
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText('Balance:\nBank:', 170 - 10, 135);
+        ctx.drawImage(getTransparent, 100 - 10, 140, canvas.width - 125, canvas.height - 170);
 
-        //ctx.drawImage(dollar, 265, 105, 30, 30);
-
-        ctx.drawImage(white, 20 + 10, -50, 10, 100 + 150);
-        ctx.drawImage(circle, 20 - 10, 10 - 5, 100 + 10, 100 + 10);
-
-        ctx.beginPath();
-        ctx.arc(70 - 5, 60, 45 - 5, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.clip();
-
-        let avatar = await Canvas.loadImage(member.avatarURL({ format: "png" }));
-        ctx.drawImage(avatar, 20, 10, 100 - 10, 100 - 10)
+        //ctx.drawImage(getGuildLogo, 18, 140, 52, 50);
 
         let attachment = new MessageAttachment(canvas.toBuffer(), 'card.png');
 
-        await message.channel.send(attachment);
+        await message.reply(attachment);
     }
 }
 

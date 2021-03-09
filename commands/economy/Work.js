@@ -5,8 +5,9 @@ class Work extends CommandStructure {
     constructor(...args) {
         super(...args);
 
-        this.name    = 'work';
-        this.aliases = [ 'w' ];
+        this.name     = 'work';
+        this.aliases  = [ 'w' ];
+        this.cooldown = 25;
     }
 
     async execute({ message }) {

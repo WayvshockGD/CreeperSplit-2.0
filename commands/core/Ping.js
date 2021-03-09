@@ -4,8 +4,9 @@ class Ping extends CommandStructure {
     constructor(...args) {
         super(...args);
 
-        this.name = 'ping';
-        this.aliases = [ 'pong' ];
+        this.name     = 'ping';
+        this.aliases  = [ 'pong' ];
+        this.cooldown = 5;
         //this.category = 'Core';
     }
 

@@ -6,7 +6,8 @@ class Slots extends CommandStructure {
     constructor(...args) {
         super(...args);
 
-        this.name    = 'slots';
+        this.name     = 'slots';
+        this.cooldown = 15;
     }
 
     async execute({ message }) {

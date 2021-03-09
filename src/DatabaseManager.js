@@ -33,7 +33,7 @@ async function economyCount(member) {
 
         return `$100\n$` + 0
     } else if (userData) {
-        return `$${userData.Count}\n$` + userData.Bank;
+        return `$${userData.Count}        $` + userData.Bank;
     }
 }
 

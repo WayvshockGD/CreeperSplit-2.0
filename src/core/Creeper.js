@@ -1,4 +1,4 @@
-const { Client } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const { ClientOptions } = require('../../json/options.json');
 const { token, prefix } = require('../../json/config.json');
 const CommandHandler = require('../handlers/commandhandler');
@@ -33,8 +33,9 @@ class Creeper extends Client {
     }
 
     onMessage() {
+        let CoolDowns = new Collection();
         this.on('message', (message) => {
-            CommandHandler(message, this);
+            CommandHandler(message, this, CoolDowns);
         });
     }
 
