@@ -1,7 +1,0 @@
-{
-  "main": {
-    "Core": ["ping", "help"],
-    "economy": ["balance", "work"],
-    "games": ["slots"]
-  }
-}
